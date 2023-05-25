@@ -5,14 +5,20 @@ class LinkedList
     @tail = nil
   end
 
+  # Adds a node to the end of the list.
   def append(data)
-    if @head == nil
+    if @head.nil?
       prepend(data)
     else
-      # (TODO) append new data
+      tmp = Node.new
+      tmp = tmp.next_node until tmp.next_node.nil?
+
+      tmp.next_node = Node.new(data, nil)
+      @tail = tmp.next_node
     end
   end
 
+  # Adds a node to the start of the list.
   def prepend(data)
     @head = Node.new(data, @head)
   end
@@ -27,3 +33,9 @@ class Node
     @next_node = next_node
   end
 end
+
+# Testing ground ;)
+list = LinkedList.new
+list.prepend(32)
+list.append(64)
+p list
