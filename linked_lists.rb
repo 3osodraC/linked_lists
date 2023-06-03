@@ -22,6 +22,17 @@ class LinkedList
   def prepend(data)
     @head = Node.new(data, @head)
   end
+
+  # Returns linked list size.
+  def size
+    tmp = @head
+    size = 0
+    until tmp.nil?
+      tmp = tmp.next_node
+      size += 1
+    end
+    size
+  end
 end
 
 # Linked list node.
@@ -36,6 +47,9 @@ end
 
 # Testing ground ;)
 list = LinkedList.new
+p list.size
 list.prepend(32)
+p list.size
 list.append(64)
 p list
+p list.size
