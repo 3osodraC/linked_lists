@@ -1,5 +1,7 @@
 # Adds a linked list, a list of values scattered throughout memory.
 class LinkedList
+  attr_reader :head, :tail
+
   def initialize
     @head = nil
     @tail = nil
@@ -24,12 +26,27 @@ class LinkedList
     end
   end
 
+  # Just iterate until it reaches the index.
+  # BE CAREFUL though, include an exception if the user inputs an index that doesn't exist.
+  def at(index)
+    raise 'Invalid index.' if index > size - 1 # || index < 0
+
+    current = @head
+    i = 0
+    until i == index
+      current = current.next_node
+      i += 1
+    end
+    current
+  end
+
   # Adds a node to the start of the list.
   def prepend(data)
     @head = Node.new(data, @head)
   end
 
-  # Returns linked list size.
+  # Returns linked list size by adding 1 to the counter until the current
+  # node's next_node is nil, then it returns counter (size).
   def size
     current = @head
     size = 0
@@ -59,3 +76,7 @@ p list.size
 list.append(64)
 p list
 p list.size
+
+puts "head: #{list.head}\ntail: #{list.tail}"
+
+puts "at 0: #{list.at(0)}\nat 1: #{list.at(1)}"
