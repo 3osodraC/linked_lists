@@ -26,10 +26,10 @@ class LinkedList
     end
   end
 
-  # Just iterate until it reaches the index.
-  # BE CAREFUL though, include an exception if the user inputs an index that doesn't exist.
+  # Returns the node at a specific index by traversing the list and returning
+  # the current node when i = the specified index.
   def at(index)
-    raise 'Invalid index.' if index > size - 1 # || index < 0
+    raise 'Invalid index.' if index > size - 1 || index.negative?
 
     current = @head
     i = 0
@@ -79,4 +79,4 @@ p list.size
 
 puts "head: #{list.head}\ntail: #{list.tail}"
 
-puts "at 0: #{list.at(0)}\nat 1: #{list.at(1)}"
+puts "\nat 0: #{list.at(0)}\nat 1: #{list.at(1)}\n"
