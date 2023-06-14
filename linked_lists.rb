@@ -40,6 +40,30 @@ class LinkedList
     current
   end
 
+  # Retunrs true if value is found, false if not.
+  def contains?(value)
+    current = @head
+    until current.nil?
+      return true if current.data == value
+
+      current = current.next_node
+    end
+    false
+  end
+
+  # Returns index of the specified value, returns nil if it's not found.
+  def find(value)
+    current = @head
+    index = 0
+    until current.nil?
+      return index if current.data == value
+
+      current = current.next_node
+      index += 1
+    end
+    nil
+  end
+
   # Adds a node to the start of the list.
   def prepend(data)
     @head = Node.new(data, @head)
@@ -70,13 +94,17 @@ end
 
 # Testing ground ;)
 list = LinkedList.new
-p list.size
+
+puts "Linked Lists!\nThe list is currently empty. let's check its size: #{list.size}
+\nLet's add 32 to the start and check its size again."
 list.prepend(32)
-p list.size
+
+puts "Size: #{list.size}
+\nLet's add 64 to the end of the list and check its size again."
 list.append(64)
-p list
-p list.size
 
-puts "head: #{list.head}\ntail: #{list.tail}"
+puts "Size: #{list.size}\nNow let's check the other class methods!"
 
-puts "\nat 0: #{list.at(0)}\nat 1: #{list.at(1)}\n"
+puts "\nhead: #{list.head}\ntail: #{list.tail}\nat 0: #{list.at(0)}\nat 1: #{list.at(1)}
+\ncontains? 64: #{list.contains?(64)}\ncontains? 999: #{list.contains?(999)}
+\nfind 64: #{list.find(64)}"
