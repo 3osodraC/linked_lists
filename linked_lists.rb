@@ -80,6 +80,19 @@ class LinkedList
     end
     size
   end
+
+  # Returns a string version of the list.
+  def to_s
+    string = ''
+    current = @head
+    until current.nil?
+      string << "( #{current.data} ) -> "
+
+      current = current.next_node
+      string << "nil" if current.nil?
+    end
+    string
+  end
 end
 
 # Linked list node.
@@ -107,4 +120,4 @@ puts "Size: #{list.size}\nNow let's check the other class methods!"
 
 puts "\nhead: #{list.head}\ntail: #{list.tail}\nat 0: #{list.at(0)}\nat 1: #{list.at(1)}
 \ncontains? 64: #{list.contains?(64)}\ncontains? 999: #{list.contains?(999)}
-\nfind 64: #{list.find(64)}"
+\nfind 64: #{list.find(64)}\nto_s: #{list.to_s}"
