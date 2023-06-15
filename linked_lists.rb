@@ -64,6 +64,24 @@ class LinkedList
     nil
   end
 
+  # Removes the last node of the list by traversing to the
+  # second to last node and setting its next_node to nil.
+  def pop
+    raise 'Cannot delete from empty list.' if @head.nil?
+
+    current = @head
+    previous = nil
+
+    until current.next_node.nil?
+      current = current.next_node
+      previous = current
+    end
+
+    raise 'Cannot delete.' if current.nil?
+
+    previous.next_node = nil
+  end
+
   # Adds a node to the start of the list.
   def prepend(data)
     @head = Node.new(data, @head)
@@ -120,4 +138,7 @@ puts "Size: #{list.size}\nNow let's check the other class methods!"
 
 puts "\nhead: #{list.head}\ntail: #{list.tail}\nat 0: #{list.at(0)}\nat 1: #{list.at(1)}
 \ncontains? 64: #{list.contains?(64)}\ncontains? 999: #{list.contains?(999)}
-\nfind 64: #{list.find(64)}\nto_s: #{list.to_s}"
+\nfind 64: #{list.find(64)}\nto_s: #{list.to_s}\npop: #{list.pop}"
+
+list.pop
+p list
